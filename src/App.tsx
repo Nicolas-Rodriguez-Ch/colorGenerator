@@ -28,7 +28,7 @@ function App() {
           Generate Random Color!
         </button>
         <>
-          {generatedColors !== null ? (
+          {generatedColors.length > 0 ? (
             <div>Your generated colors</div>
           ) : (
             <div>You haven't generated any colors yet</div>

@@ -3,12 +3,19 @@ import useGenerateRandomColor from './hooks/useGenerateRandomColor';
 
 function App() {
   const { color, generateColor } = useGenerateRandomColor();
+  console.log('🚀 ~ App ~ color:', color);
+  
   return (
     <>
       <div
-        className={`h-full w-full bg-blue-900 flex justify-center items-center`}
+        className={`h-dvh w-full bg-blue-900 flex justify-center items-center`}
       >
-        aqui va el bg
+        <button
+          className='p-10 rounded-xl text-2xl bg-teal-800 cursor-pointer'
+          onClick={generateColor}
+        >
+          Generate Random Color!
+        </button>
       </div>
     </>
   );

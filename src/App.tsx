@@ -1,20 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import useGenerateRandomColor from './hooks/useGenerateRandomColor';
 
 function App() {
   const { color, generateColor } = useGenerateRandomColor();
   const [generatedColors, setGeneratedColors] = useState<string[]>([]);
-  console.log('🚀 ~ App ~ generatedColors:', generatedColors);
+  useEffect(() => {
+    if (color) {
+      setGeneratedColors((prev) => [...prev, color]);
+    }
+  }, [color]);
   const generateBaseColor = () => {
     generateColor();
-    setGeneratedColors((prev) => [...prev, color]);
   };
 
   return (
     <>
       <div
-        className={`h-dvh w-full flex justify-center items-center`}
+        className='h-dvh w-full flex flex-col gap-4 justify-center items-center'
         style={{ backgroundColor: '#' + color }}
       >
         <button
@@ -29,7 +32,20 @@ function App() {
         </button>
         <>
           {generatedColors.length > 0 ? (
-            <div>Your generated colors</div>
+            <div className='flex flex-col'>
+              <div>Your generated colors: </div>
+              {generatedColors.map((color) => {
+                return (
+                  <span
+                    key={color}
+                    style={{ backgroundColor: '#' + color }}
+                    className='rounded-xl p-4 m-2 font-extrabold'
+                  >
+                    #{color}
+                  </span>
+                );
+              })}
+            </div>
           ) : (
             <div>You haven't generated any colors yet</div>
           )}

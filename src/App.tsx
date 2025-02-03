@@ -30,12 +30,20 @@ function App() {
         >
           Generate Random Color!
         </button>
-        <>
+        <div>
           {generatedColors.length > 0 ? (
-            <div className='flex flex-col'>
-              <div>Your generated colors: </div>
-              {generatedColors.map((color) => {
-                return (
+            <div className='flex flex-col items-center'>
+              <div className='font-bold'>Your generated colors:</div>
+              <div
+                className='grid gap-2'
+                style={{
+                  gridTemplateColumns:
+                    generatedColors.length > 5
+                      ? 'repeat(9, 1fr)'
+                      : 'repeat(1, 1fr)',
+                }}
+              >
+                {generatedColors.map((color) => (
                   <span
                     key={color}
                     style={{ backgroundColor: '#' + color }}
@@ -43,13 +51,15 @@ function App() {
                   >
                     #{color}
                   </span>
-                );
-              })}
+                ))}
+              </div>
             </div>
           ) : (
-            <div>You haven't generated any colors yet</div>
+            <div className='font-bold'>
+              You haven't generated any colors yet
+            </div>
           )}
-        </>
+        </div>
       </div>
     </>
   );

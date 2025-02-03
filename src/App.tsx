@@ -1,9 +1,15 @@
 import './App.css';
+import useGenerateRandomColor from './hooks/useGenerateRandomColor';
 
 function App() {
+  const { color, generateColor } = useGenerateRandomColor();
   return (
     <>
-      <h1>Color Generator</h1>
+      <div 
+        className={`h-full w-full bg-blue-900`}
+      >
+          aqui va el bg
+      </div>
     </>
   );
 }
